@@ -3,7 +3,7 @@ services:
     php:
         build:
             context: ./docker/php-fpm
-        container_name: lessons_symfony_php
+        container_name: symfony_php
         volumes:
             - ./project:/var/www:cached
 #            - ./logs/symfony:/var/www/var/log:cached
@@ -12,7 +12,7 @@ services:
 
     nginx:
         build: ./docker/nginx
-        container_name: lessons_symfony_nginx
+        container_name: symfony_nginx
         volumes:
             - ./logs/nginx:/var/log/nginx:cached
             - ./project:/var/www:cached
@@ -32,4 +32,4 @@ services:
             MYSQL_ROOT_PASSWORD: 123654789
         ports:
             - 3306:3306
-        container_name: project_mysql
+        container_name: symfony_mysql
