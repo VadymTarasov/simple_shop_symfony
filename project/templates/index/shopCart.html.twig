@@ -17,10 +17,10 @@
                 <div class="card shadow-sm">
                     <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
                     <div class="card-body">
-                        <p class="card-text">{{ item.shopItem.title}}</p>
-                        <p class="card-text">{{ item.shopItem.price}} $</p>
+                        <p class="card-text">Название: {{ item.shopItem.title}}</p>
+                        <p class="card-text">Цена: {{ item.shopItem.price}} грн</p>
                         {% set sum = sum + item.shopItem.price %}
-                        <p class="card-text">{{ item.shopItem.description}}</p>
+                        <p class="card-text">Описание: {{ item.shopItem.description}}</p>
                         <div class="d-flex justify-content-between align-items-center">
                         </div>
                     </div>
@@ -29,7 +29,7 @@
     {% endfor %}
         </div>
         <br>
-        <h4>Итого: {{ sum }}</h4>
+        <h4>Итого: {{ sum }} грн</h4>
         <br>
         <a href="{{ path('shop_order') }}" class="float-right btn btn-success mt-2">Оформить заказ</a>
         <br>

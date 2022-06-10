@@ -24,12 +24,10 @@ class IndexController extends AbstractController
     }
 
 
-    #[Route('/index', name: 'app_index')]
+    #[Route('/', name: 'app_index')]
     public function index(): Response
     {
-        return $this->render('index/index.html.twig', [
-            'controller_name' => 'IndexController',
-        ]);
+        return $this->render('index/index.html.twig');
     }
 
     #[Route('/shop/list', name: 'shop_list')]
@@ -39,6 +37,25 @@ class IndexController extends AbstractController
 
         return $this->render('index/shopList.html.twig', [
             'controller_name' => 'SHOP LIST',
+            'items' => $items,
+        ]);
+    }
+
+    #[Route('/shop/list/fruit', name: 'shop_list_fruit')]
+    public function shopFruit(ShopItemsRepository $shopItemRepository): Response
+    {
+        $items = $shopItemRepository->findAll();
+        return $this->render('index/shopFruit.html.twig', [
+            'controller_name' => 'fruit',
+            'items' => $items,
+        ]);
+    }
+    #[Route('/shop/list/vegetables', name: 'shop_list_vegetables')]
+    public function shopVegetables(ShopItemsRepository $shopItemRepository): Response
+    {
+        $items = $shopItemRepository->findAll();
+        return $this->render('index/shopVegetables.html.twig', [
+            'controller_name' => 'vegetables',
             'items' => $items,
         ]);
     }

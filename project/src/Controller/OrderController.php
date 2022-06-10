@@ -4,7 +4,11 @@ namespace App\Controller;
 
 use App\Entity\ShopOrder;
 use App\Form\OrderFormType;
+use App\Repository\ShopCartRepository;
+use App\Repository\ShopItemsRepository;
+use App\Repository\ShopOrderRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -58,4 +62,38 @@ class OrderController extends AbstractController
             ]
         );
     }
+
+    #[Route('/shop/order/show', name: 'show_order')]
+    public function default(ShopOrderRepository $orderRepository, ShopCartRepository $shopCartRepository,
+                            ShopItemsRepository $shopItemsRepository): Response
+    {
+        $orders = $orderRepository->findAll();
+        $cart = $shopCartRepository->findAll();
+        $items = $shopItemsRepository->findAll();
+        return $this->render('order/orderList.html.twig',
+            ['orders' => $orders,
+                'cart' => $cart,
+                'items' => $items,
+            ]
+        );
+    }
+
+    #[Route('/shop/order/delete/{id}', methods: ['GET'], requirements: ['id' => '\d+'])]
+    public function deleteOrder(ManagerRegistry $doctrine, int $id): Response
+    {
+        $entityManager = $doctrine->getManager();
+        $order = $entityManager->getRepository(ShopOrder::class)->find($id);
+
+        if (!$order) {
+            throw $this->createNotFoundException(
+                'No order found for id ' . $id
+            );
+        }
+        $entityManager->remove($order);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('show_order');
+    }
+
+
 }

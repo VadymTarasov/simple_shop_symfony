@@ -9,16 +9,17 @@
 </style>
 
 <div class="example-wrapper">
-
-    <h1>Список товаров ✅</h1>
+    <h1>Hello {{ controller_name }}! ✅</h1>
     <ul class="nav">
-        <li class="nav-item">  <a class="nav-link" href="/shop/list/fruit">фрукты</a>  </li>
-        <li class="nav-item">  <a class="nav-link" href="/shop/list/vegetables">овощи</a>  </li>
-         </ul>
+        <li class="nav-item">  <a class="nav-link" href="/shop/list">all products</a>  </li>
+        <li class="nav-item">  <a class="nav-link" href="/shop/list/fruit">fruit</a>  </li>
+    </ul>
     <main>
             <div class="container">
+
                 <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
                 {% for item in items %}
+                    {% if item.category.id == 2 %}
                     <div class="col">
                         <a href="{{ path('shop_item', {'id': item.id}) }}" class="itemClass">
                         <div class="card shadow-sm">
@@ -34,14 +35,11 @@
                         </div>
                         </a>
                     </div>
+                    {% endif%}
                 {% endfor %}
                 </div>
-
             </div>
-
     </main>
-
-
 </div>
 
 

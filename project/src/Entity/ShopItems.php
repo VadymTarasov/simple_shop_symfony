@@ -27,6 +27,9 @@ class ShopItems
     #[ORM\OneToMany(mappedBy: 'shop_item', targetEntity: ShopCart::class)]
     private $shopCarts;
 
+    #[ORM\ManyToOne(targetEntity: Category::class, inversedBy: 'item')]
+    private $category;
+
     public function __construct()
     {
         $this->shopCarts = new ArrayCollection();
@@ -99,6 +102,18 @@ class ShopItems
                 $shopCart->setShopItem(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getCategory(): ?Category
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?Category $category): self
+    {
+        $this->category = $category;
 
         return $this;
     }
