@@ -27,7 +27,7 @@ class ShopOrder
     #[ORM\Column(type: 'string', length: 255)]
     private $user_email;
 
-    #[ORM\Column(type: 'string', length: 255)]
+    #[ORM\Column(type: 'integer', length: 255)]
     private $user_phone;
 
     public function getId(): ?int
@@ -83,12 +83,12 @@ class ShopOrder
         return $this;
     }
 
-    public function getUserPhone(): ?string
+    public function getUserPhone(): ?int
     {
         return $this->user_phone;
     }
 
-    public function setUserPhone(string $user_phone): self
+    public function setUserPhone(int $user_phone): self
     {
         $this->user_phone = $user_phone;
 

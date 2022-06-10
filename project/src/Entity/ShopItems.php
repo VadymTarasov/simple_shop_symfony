@@ -15,7 +15,7 @@ class ShopItems
     #[ORM\Column(type: 'integer')]
     private $id;
 
-    #[ORM\Column(type: 'string', length: 255)]
+    #[ORM\Column(type: 'integer', length: 255)]
     private $price;
 
     #[ORM\Column(type: 'string', length: 255)]
@@ -40,12 +40,12 @@ class ShopItems
         return $this->id;
     }
 
-    public function getPrice(): ?string
+    public function getPrice(): ?int
     {
         return $this->price;
     }
 
-    public function setPrice(string $price): self
+    public function setPrice(int $price): self
     {
         $this->price = $price;
 
