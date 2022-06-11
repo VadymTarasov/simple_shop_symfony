@@ -9,18 +9,16 @@ use App\Repository\ShopItemsRepository;
 use Doctrine\ORM\EntityManagerInterface;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Routing\Annotation\Route;
 
 class IndexController extends AbstractController
 {
-    public Session $session;
+    private $requestStack;
 
-    public function __construct()
-    {
-        $this->session = new Session();
-        $this->session->getFlashBag('1');
+    public function __construct(RequestStack $requestStack) {
+        $this->requestStack = $requestStack;
     }
 
 
@@ -75,7 +73,8 @@ class IndexController extends AbstractController
     #[Route('/shop/item/add/{id<\d+>}', name: 'shop_cart_add')]
     public function shopCartAdd(ShopItems $shopItems, EntityManagerInterface $em): Response
     {
-        $sessionId = $this->session->getId();
+        $session = $this->requestStack->getSession();
+        $sessionId = $session->getId();
         $shopCart = new ShopCart();
         $shopCart->setShopItem($shopItems);
         $shopCart->setSessionId($sessionId);
@@ -87,10 +86,9 @@ class IndexController extends AbstractController
     #[Route('/shop/cart', name: 'shop_cart')]
     public function shopCart(ShopCartRepository $shopCartRepository): Response
     {
-        $this->session = new Session();
-        $session = $this->session->getId();
+        $session = $this->requestStack->getSession();
+        $session = $session->getId();
         $items = $shopCartRepository->findBy(['session_id' => $session]);
-
 
         return $this->render(
             'index/shopCart.html.twig',

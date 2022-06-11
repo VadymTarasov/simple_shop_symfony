@@ -11,13 +11,17 @@ use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Routing\Annotation\Route;
 
 class OrderController extends AbstractController
 {
-    public Session $session;
+    private $requestStack;
+
+    public function __construct(RequestStack $requestStack) {
+        $this->requestStack = $requestStack;
+    }
 
 
     #[Route('/main', name: 'app_main')]
@@ -41,13 +45,13 @@ class OrderController extends AbstractController
             $shopOrder = $form->getData();
 
             if ($shopOrder instanceof ShopOrder) {
-                $this->session = new Session();
-                $sessionId = $this->session->getId();
+                $session = $this->requestStack->getSession();
+                $sessionId = $session->getId();
                 $shopOrder->setStatus(ShopOrder::STATUS_NEW_ORDER);
                 $shopOrder->setSessionId($sessionId);
                 $em->persist($shopOrder);
                 $em->flush();
-                $this->session->migrate();
+                $session->migrate();
             }
 
             return $this->redirectToRoute('shop_cart');
