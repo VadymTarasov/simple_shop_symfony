@@ -137,6 +137,9 @@
       <excludeFolder url="file://$MODULE_DIR$/project/vendor/symfony/expression-language" />
       <excludeFolder url="file://$MODULE_DIR$/project/vendor/symfony/security-csrf" />
       <excludeFolder url="file://$MODULE_DIR$/project/vendor/symfony/phpunit-bridge" />
+      <excludeFolder url="file://$MODULE_DIR$/project/vendor/easycorp/easyadmin-bundle" />
+      <excludeFolder url="file://$MODULE_DIR$/project/vendor/symfony/uid" />
+      <excludeFolder url="file://$MODULE_DIR$/project/vendor/symfony/polyfill-uuid" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

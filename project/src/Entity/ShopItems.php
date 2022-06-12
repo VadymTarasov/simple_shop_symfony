@@ -34,6 +34,10 @@ class ShopItems
     {
         $this->shopCarts = new ArrayCollection();
     }
+    public function __toString(): string
+    {
+        return $this->price.' '.$this->id;
+    }
 
     public function getId(): ?int
     {
@@ -43,6 +47,12 @@ class ShopItems
     public function getPrice(): ?int
     {
         return $this->price;
+    }
+    public function setId(int $id): self
+    {
+        $this->id = $id;
+
+        return $this;
     }
 
     public function setPrice(int $price): self
