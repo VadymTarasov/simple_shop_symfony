@@ -1,18 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello IndexController!{% endblock %}
+{% block title %}Овощи{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-
 <div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+    <h1>Овощи ✅</h1>
     <ul class="nav">
-        <li class="nav-item">  <a class="nav-link" href="/shop/list">all products</a>  </li>
-        <li class="nav-item">  <a class="nav-link" href="/shop/list/fruit">fruit</a>  </li>
+        <li class="nav-item">  <a class="nav-link" href="/shop/list">Все продукты</a>  </li>
+        <li class="nav-item">  <a class="nav-link" href="/shop/list/fruit">Фрукты</a>  </li>
     </ul>
     <main>
             <div class="container">
@@ -26,9 +21,9 @@
                             <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
 
                             <div class="card-body">
-                                <p class="card-text">{{ item.title}}</p>
-                                <p class="card-text">{{ item.price}}</p>
-                                <p class="card-text">{{ item.description}}</p>
+                                <p class="card-text">{{ item.title|striptags}}</p>
+                                <p class="card-text">{{ item.price|striptags}}</p>
+                                <p class="card-text">{{ item.description|striptags}}</p>
                                 <div class="d-flex justify-content-between align-items-center">
                                 </div>
                             </div>

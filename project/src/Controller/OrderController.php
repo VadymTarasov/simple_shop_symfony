@@ -24,14 +24,6 @@ class OrderController extends AbstractController
     }
 
 
-    #[Route('/main', name: 'app_main')]
-    public function index(): Response
-    {
-        return $this->render('main/index.html.twig', [
-            'controller_name' => 'MainController',
-        ]);
-    }
-
     #[Route('/shop/order', name: 'shop_order')]
     public function shopOrder(Request $request, EntityManagerInterface $em): Response
     {
@@ -61,7 +53,6 @@ class OrderController extends AbstractController
         return $this->render(
             'index/shopOrder.html.twig',
             [
-                'title' => 'Оформление заказа',
                 'form' => $form->createView(),
             ]
         );
