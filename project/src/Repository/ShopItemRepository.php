@@ -2,26 +2,26 @@
 
 namespace App\Repository;
 
-use App\Entity\ShopItems;
+use App\Entity\ShopItem;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<ShopItems>
+ * @extends ServiceEntityRepository<ShopItem>
  *
- * @method ShopItems|null find($id, $lockMode = null, $lockVersion = null)
- * @method ShopItems|null findOneBy(array $criteria, array $orderBy = null)
- * @method ShopItems[]    findAll()
- * @method ShopItems[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method ShopItem|null find($id, $lockMode = null, $lockVersion = null)
+ * @method ShopItem|null findOneBy(array $criteria, array $orderBy = null)
+ * @method ShopItem[]    findAll()
+ * @method ShopItem[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class ShopItemsRepository extends ServiceEntityRepository
+class ShopItemRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, ShopItems::class);
+        parent::__construct($registry, ShopItem::class);
     }
 
-    public function add(ShopItems $entity, bool $flush = false): void
+    public function add(ShopItem $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
 
@@ -30,7 +30,7 @@ class ShopItemsRepository extends ServiceEntityRepository
         }
     }
 
-    public function remove(ShopItems $entity, bool $flush = false): void
+    public function remove(ShopItem $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);
 
@@ -40,7 +40,7 @@ class ShopItemsRepository extends ServiceEntityRepository
     }
 
 //    /**
-//     * @return ShopItems[] Returns an array of ShopItems objects
+//     * @return ShopItem[] Returns an array of ShopItem objects
 //     */
 //    public function findByExampleField($value): array
 //    {
@@ -54,7 +54,7 @@ class ShopItemsRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-//    public function findOneBySomeField($value): ?ShopItems
+//    public function findOneBySomeField($value): ?ShopItem
 //    {
 //        return $this->createQueryBuilder('s')
 //            ->andWhere('s.exampleField = :val')

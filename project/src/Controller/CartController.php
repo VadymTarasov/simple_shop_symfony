@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\ShopCart;
-use App\Entity\ShopItems;
+use App\Entity\ShopItem;
 use App\Repository\ShopCartRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
@@ -36,7 +36,7 @@ class CartController extends AbstractController
 
 
     #[Route('/shop/item/add/{id<\d+>}', name: 'shop_cart_add')]
-    public function shopCartAdd(ShopItems $shopItems, EntityManagerInterface $em): Response
+    public function shopCartAdd(ShopItem $shopItems, EntityManagerInterface $em): Response
     {
         $session = $this->requestStack->getSession();
         $sessionId = $session->getId();

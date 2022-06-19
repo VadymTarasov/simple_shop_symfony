@@ -5,7 +5,7 @@ namespace App\Controller;
 use App\Entity\ShopOrder;
 use App\Form\OrderFormType;
 use App\Repository\ShopCartRepository;
-use App\Repository\ShopItemsRepository;
+use App\Repository\ShopItemRepository;
 use App\Repository\ShopOrderRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
@@ -60,7 +60,7 @@ class OrderController extends AbstractController
 
     #[Route('/shop/order/show', name: 'show_order')]
     public function default(ShopOrderRepository $orderRepository, ShopCartRepository $shopCartRepository,
-                            ShopItemsRepository $shopItemsRepository): Response
+                            ShopItemRepository  $shopItemsRepository): Response
     {
         $orders = $orderRepository->findAll();
         $cart = $shopCartRepository->findAll();

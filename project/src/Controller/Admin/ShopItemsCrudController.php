@@ -2,7 +2,7 @@
 
 namespace App\Controller\Admin;
 
-use App\Entity\ShopItems;
+use App\Entity\ShopItem;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
@@ -12,7 +12,7 @@ class ShopItemsCrudController extends AbstractCrudController
 {
     public static function getEntityFqcn(): string
     {
-        return ShopItems::class;
+        return ShopItem::class;
     }
 
 

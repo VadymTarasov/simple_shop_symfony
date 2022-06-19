@@ -16,7 +16,7 @@ class ShopCart
     #[ORM\Column(type: 'string', length: 255)]
     private $session_id;
 
-    #[ORM\ManyToOne(targetEntity: ShopItems::class, inversedBy: 'shopCarts')]
+    #[ORM\ManyToOne(targetEntity: ShopItem::class, inversedBy: 'shopCarts')]
     private $shop_item;
 
     public function getId(): ?int
@@ -36,12 +36,12 @@ class ShopCart
         return $this;
     }
 
-    public function getShopItem(): ?ShopItems
+    public function getShopItem(): ?ShopItem
     {
         return $this->shop_item;
     }
 
-    public function setShopItem(?ShopItems $shop_item): self
+    public function setShopItem(?ShopItem $shop_item): self
     {
         $this->shop_item = $shop_item;
 

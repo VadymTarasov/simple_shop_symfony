@@ -2,13 +2,13 @@
 
 namespace App\Entity;
 
-use App\Repository\ShopItemsRepository;
+use App\Repository\ShopItemRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: ShopItemsRepository::class)]
-class ShopItems
+#[ORM\Entity(repositoryClass: ShopItemRepository::class)]
+class ShopItem
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]

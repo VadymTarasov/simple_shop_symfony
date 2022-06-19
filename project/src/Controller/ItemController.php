@@ -2,8 +2,8 @@
 
 namespace App\Controller;
 
-use App\Entity\ShopItems;
-use App\Repository\ShopItemsRepository;
+use App\Entity\ShopItem;
+use App\Repository\ShopItemRepository;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RequestStack;
@@ -21,7 +21,7 @@ class ItemController extends AbstractController
 
 
     #[Route('/shop/list', name: 'shop_list')]
-    public function shopList(ShopItemsRepository $shopItemRepository): Response
+    public function shopList(ShopItemRepository $shopItemRepository): Response
     {
         $items = $shopItemRepository->findAll();
 
@@ -31,7 +31,7 @@ class ItemController extends AbstractController
     }
 
     #[Route('/shop/list/fruit', name: 'shop_list_fruit')]
-    public function shopFruit(ShopItemsRepository $shopItemRepository): Response
+    public function shopFruit(ShopItemRepository $shopItemRepository): Response
     {
         $items = $shopItemRepository->findAll();
         return $this->render('index/shopFruit.html.twig', [
@@ -39,7 +39,7 @@ class ItemController extends AbstractController
         ]);
     }
     #[Route('/shop/list/vegetables', name: 'shop_list_vegetables')]
-    public function shopVegetables(ShopItemsRepository $shopItemRepository): Response
+    public function shopVegetables(ShopItemRepository $shopItemRepository): Response
     {
         $items = $shopItemRepository->findAll();
         return $this->render('index/shopVegetables.html.twig', [
@@ -48,7 +48,7 @@ class ItemController extends AbstractController
     }
 
     #[Route('/shop/item/{id<\d+>}', name: 'shop_item')]
-    public function shopItem(ShopItems $shopItem): Response
+    public function shopItem(ShopItem $shopItem): Response
     {
         return $this->render('index/shopItem.html.twig', [
             'title' => $shopItem->getTitle(),

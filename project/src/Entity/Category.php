@@ -18,7 +18,7 @@ class Category
     #[ORM\Column(type: 'string', length: 255)]
     private $title;
 
-    #[ORM\OneToMany(mappedBy: 'category', targetEntity: ShopItems::class)]
+    #[ORM\OneToMany(mappedBy: 'category', targetEntity: ShopItem::class)]
     private $item;
 
     public function __construct()
@@ -44,14 +44,14 @@ class Category
     }
 
     /**
-     * @return Collection<int, ShopItems>
+     * @return Collection<int, ShopItem>
      */
     public function getItem(): Collection
     {
         return $this->item;
     }
 
-    public function addItem(ShopItems $item): self
+    public function addItem(ShopItem $item): self
     {
         if (!$this->item->contains($item)) {
             $this->item[] = $item;
@@ -61,7 +61,7 @@ class Category
         return $this;
     }
 
-    public function removeItem(ShopItems $item): self
+    public function removeItem(ShopItem $item): self
     {
         if ($this->item->removeElement($item)) {
             // set the owning side to null (unless already changed)
