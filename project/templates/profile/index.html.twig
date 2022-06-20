@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ProfileController!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper">
+    <h1>Hello {{ controller_name }}! ✅</h1>
+
+    <div class="row g-0">
+        <div class="col-md-3" style="margin-top: 15px">
+            <img style="width: 100%;" src="https://www.soundandvision.ee/wp-content/uploads/2019/05/profile-img.jpg" alt="...">
+        </div>
+        <div class="col-md-9">
+            <div class="card-body">
+                <ul class="list-group">
+                    <li class="list-group-item"> {{ user.id }}</li>
+                    <li class="list-group-item"> {{ user.email }}</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock %}

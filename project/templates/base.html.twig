@@ -44,8 +44,9 @@
                                 <a class="nav-link active" aria-current="page" href="{{ path('app_logout') }}">Выйти</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="/admin">Админ</a>
+                                <a class="nav-link active" aria-current="page" href="/profile">Личный кабинет</a>
                             </li>
+
                         {% else %}
                             <li class="nav-item">
                                 <a class="nav-link active" aria-current="page" href="{{ path('app_login') }}">Войти</a>
@@ -54,6 +55,9 @@
                                 <a class="nav-link active" aria-current="page" href="{{ path('app_register') }}">Регистрация</a>
                             </li>
                         {% endif %}
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="/admin">Админ</a>
+                        </li>
                     </ul>
                     <form class="d-flex" role="search">
                         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
