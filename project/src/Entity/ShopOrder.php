@@ -21,13 +21,13 @@ class ShopOrder
     #[ORM\Column(type: 'integer')]
     private $status;
 
-    #[ORM\Column(type: 'string', length: 255)]
+    #[ORM\Column(type: 'string', length: 255 , nullable: true)]
     private $user_name;
 
     #[ORM\Column(type: 'string', length: 255)]
     private $user_email;
 
-    #[ORM\Column(type: 'integer', length: 255)]
+    #[ORM\Column(type: 'integer', length: 255 , nullable: true)]
     private $user_phone;
 
     public function getId(): ?int

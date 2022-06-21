@@ -19,7 +19,8 @@ class OrderController extends AbstractController
 {
     private $requestStack;
 
-    public function __construct(RequestStack $requestStack) {
+    public function __construct(RequestStack $requestStack)
+    {
         $this->requestStack = $requestStack;
     }
 
@@ -33,6 +34,18 @@ class OrderController extends AbstractController
         $form = $this->createForm(OrderFormType::class, $shopOrder);
 
         $form->handleRequest($request);
+        if ($this->getUser()) {
+            $session = $this->requestStack->getSession();
+            $sessionId = $session->getId();
+            $shopOrder->setStatus(ShopOrder::STATUS_NEW_ORDER);
+            $shopOrder->setSessionId($sessionId);
+            $shopOrder->setUserEmail($this->getUser()->getUserIdentifier());
+            $shopOrder->setUserName($this->getUser()->getUserIdentifier());
+            $em->persist($shopOrder);
+            $em->flush();
+            $session->migrate();
+            return $this->redirectToRoute('shop_cart');
+        }
         if ($form->isSubmitted() && $form->isValid()) {
             $shopOrder = $form->getData();
 

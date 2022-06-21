@@ -17,7 +17,8 @@ class CartController extends AbstractController
 {
     private $requestStack;
 
-    public function __construct(RequestStack $requestStack) {
+    public function __construct(RequestStack $requestStack)
+    {
         $this->requestStack = $requestStack;
 
     }
@@ -43,6 +44,12 @@ class CartController extends AbstractController
         $shopCart = new ShopCart();
         $shopCart->setShopItem($shopItems);
         $shopCart->setSessionId($sessionId);
+        if ($this->getUser()) {
+            $shopCart->setUserIdentifier($this->getUser()->getUserIdentifier());
+        } else {
+            $shopCart->setUserIdentifier(0);
+        }
+
         $em->persist($shopCart);
         $em->flush();
         return $this->redirectToRoute('shop_cart', ['id' => $shopItems->getId()]);

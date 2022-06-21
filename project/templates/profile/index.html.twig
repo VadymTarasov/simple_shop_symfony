@@ -9,7 +9,7 @@
 </style>
 
 <div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+    <h1>Профиль</h1>
 
     <div class="row g-0">
         <div class="col-md-3" style="margin-top: 15px">
@@ -19,11 +19,26 @@
             <div class="card-body">
                 <ul class="list-group">
                     <li class="list-group-item"> {{ user.id }}</li>
+                    <li class="list-group-item"> {{ user.name }}</li>
                     <li class="list-group-item"> {{ user.email }}</li>
+                    <li class="list-group-item"> {{ user.userPhone}}</li>
                 </ul>
             </div>
         </div>
     </div>
+    <h1> Заказы </h1>
+    {% for order in orders %}
+
+            {% for carts in cart %}
+                {% if order.userEmail == user.email and order.userEmail ==  carts.userIdentifier
+                    and order.sessionId == carts.sessionId  %}
+
+                    <td><br>продукт - {{ carts.shopItem.title }} ✅ <br></td>
+
+                {% endif %}
+            {% endfor %}
+
+    {% endfor %}
 
 </div>
 {% endblock %}

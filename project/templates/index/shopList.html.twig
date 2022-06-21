@@ -14,11 +14,11 @@
             <div class="container">
                 <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
                 {% for item in items %}
+
                     <div class="col">
                         <a href="{{ path('shop_item', {'id': item.id}) }}" class="itemClass">
                         <div class="card shadow-sm">
-                            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-
+                            <img width="100%" height="225" src="{{ asset('image/') }}{{item.image}}" role="img" >
                             <div class="card-body">
                                 <p class="card-text">{{ item.title|striptags}}</p>
                                 <p class="card-text">{{ item.price|striptags}}</p>
@@ -30,6 +30,8 @@
                         </a>
                     </div>
                 {% endfor %}
+
+
                 </div>
             </div>
     </main>

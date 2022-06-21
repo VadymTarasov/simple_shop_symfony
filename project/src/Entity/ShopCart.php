@@ -19,6 +19,9 @@ class ShopCart
     #[ORM\ManyToOne(targetEntity: ShopItem::class, inversedBy: 'shopCarts')]
     private $shop_item;
 
+    #[ORM\Column(type: 'string', nullable: true)]
+    private $userIdentifier;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -44,6 +47,18 @@ class ShopCart
     public function setShopItem(?ShopItem $shop_item): self
     {
         $this->shop_item = $shop_item;
+
+        return $this;
+    }
+
+    public function getUserIdentifier(): string
+    {
+        return $this->userIdentifier;
+    }
+
+    public function setUserIdentifier(string $userIdentifier): self
+    {
+        $this->userIdentifier = $userIdentifier;
 
         return $this;
     }
