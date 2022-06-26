@@ -39,6 +39,22 @@ class ShopItemRepository extends ServiceEntityRepository
         }
     }
 
+
+    /**
+     * @param string $title
+     * @return ShopItem[]
+     */
+
+    public function search(string $title): array
+    {
+        return $this->createQueryBuilder('i')
+            ->andWhere('i.title like :title')
+            ->setParameter('title', $title . '%')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
 //    /**
 //     * @return ShopItem[] Returns an array of ShopItem objects
 //     */

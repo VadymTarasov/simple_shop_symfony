@@ -6,7 +6,6 @@ services:
         container_name: symfony_php
         volumes:
             - ./project:/var/www:cached
-#            - ./logs/symfony:/var/www/var/log:cached
         links:
             - mysql
 
