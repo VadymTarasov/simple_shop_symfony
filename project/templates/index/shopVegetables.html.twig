@@ -14,7 +14,7 @@
 
                 <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
                 {% for item in items %}
-                    {% if item.category.id == 2 %}
+                    {% if item.category.title == 'vegetables' %}
                     <div class="col">
                         <a href="{{ path('shop_item', {'id': item.id}) }}" class="itemClass">
                         <div class="card shadow-sm">

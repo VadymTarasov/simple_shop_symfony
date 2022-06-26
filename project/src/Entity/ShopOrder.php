@@ -21,14 +21,32 @@ class ShopOrder
     #[ORM\Column(type: 'integer')]
     private $status;
 
-    #[ORM\Column(type: 'string', length: 255 , nullable: true)]
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $user_name;
 
     #[ORM\Column(type: 'string', length: 255)]
     private $user_email;
 
-    #[ORM\Column(type: 'integer', length: 255 , nullable: true)]
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $user_phone;
+
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private $address;
+
+    #[ORM\Column(type: 'datetime_immutable', nullable: true)]
+    private $createdAt;
+
+    #[ORM\Column(type: 'datetime_immutable', nullable: true)]
+    private $updatedAt;
+
+    #[ORM\Column(type: 'integer', nullable: true)]
+    private $userId;
+
+    public function __construct()
+    {
+        $this->setCreatedAt(new \DateTimeImmutable());
+        $this->setUpdatedAt(new \DateTimeImmutable());
+    }
 
     public function getId(): ?int
     {
@@ -83,14 +101,62 @@ class ShopOrder
         return $this;
     }
 
-    public function getUserPhone(): ?int
+    public function getUserPhone(): string
     {
         return $this->user_phone;
     }
 
-    public function setUserPhone(int $user_phone): self
+    public function setUserPhone(string $user_phone): self
     {
         $this->user_phone = $user_phone;
+
+        return $this;
+    }
+
+    public function getAddress(): ?string
+    {
+        return $this->address;
+    }
+
+    public function setAddress(?string $address): self
+    {
+        $this->address = $address;
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeImmutable
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(?\DateTimeImmutable $createdAt): self
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeImmutable
+    {
+        return $this->updatedAt;
+    }
+
+    public function setUpdatedAt(?\DateTimeImmutable $updatedAt): self
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    public function getUserId(): ?int
+    {
+        return $this->userId;
+    }
+
+    public function setUserId(?int $userId): self
+    {
+        $this->userId = $userId;
 
         return $this;
     }

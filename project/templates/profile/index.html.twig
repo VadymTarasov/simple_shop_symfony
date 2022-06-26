@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ProfileController!{% endblock %}
+{% block title %}Профиль{% endblock %}
 
 {% block body %}
 <style>
@@ -18,10 +18,10 @@
         <div class="col-md-9">
             <div class="card-body">
                 <ul class="list-group">
-                    <li class="list-group-item"> {{ user.id }}</li>
-                    <li class="list-group-item"> {{ user.name }}</li>
-                    <li class="list-group-item"> {{ user.email }}</li>
-                    <li class="list-group-item"> {{ user.userPhone}}</li>
+                    <li class="list-group-item"> {{ user.id|striptags }}</li>
+                    <li class="list-group-item"> {{ user.name|striptags }}</li>
+                    <li class="list-group-item"> {{ user.email|striptags }}</li>
+                    <li class="list-group-item"> {{ user.userPhone|striptags}}</li>
                 </ul>
             </div>
         </div>
@@ -29,14 +29,22 @@
     <h1> Заказы </h1>
     {% for order in orders %}
 
+
+        {% if order.userId == user.id %}
+            <td>заказ № <b>{{ order.id|striptags }}|</b> оформлен на <b>{{ order.userName|striptags }}|</b>
+                адрес <b>{{ order.address|striptags }}|</b> дата создания <b>{{ order.createdAt|date("m/d/Y")}}|</b></td>
+        {% endif %}
+
             {% for carts in cart %}
-                {% if order.userEmail == user.email and order.userEmail ==  carts.userIdentifier
+                {% if order.userId == user.id and order.userId ==  carts.userIdentifier
                     and order.sessionId == carts.sessionId  %}
 
-                    <td><br>продукт - {{ carts.shopItem.title }} ✅ <br></td>
+                    <td><br>продукт - {{ carts.shopItem.title|striptags }} ✅ <br></td>
 
                 {% endif %}
             {% endfor %}
+
+        <td>_________________________________________________________________________________________ <br></td>
 
     {% endfor %}
 

@@ -6,6 +6,7 @@ use App\Entity\ShopOrder;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -42,9 +43,16 @@ class OrderFormType extends AbstractType
             )
             ->add(
                 'user_phone',
-                TextType::class,
+                NumberType::class,
                 [
                     'label' => 'Телефон',
+                ]
+            )
+            ->add(
+                'address',
+                TextType::class,
+                [
+                    'label' => 'Адрес',
                 ]
             )
             ->add(

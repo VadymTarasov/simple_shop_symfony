@@ -45,7 +45,7 @@ class CartController extends AbstractController
         $shopCart->setShopItem($shopItems);
         $shopCart->setSessionId($sessionId);
         if ($this->getUser()) {
-            $shopCart->setUserIdentifier($this->getUser()->getUserIdentifier());
+            $shopCart->setUserIdentifier($this->getUser()->getId());
         } else {
             $shopCart->setUserIdentifier(0);
         }

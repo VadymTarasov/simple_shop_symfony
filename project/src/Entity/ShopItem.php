@@ -39,7 +39,7 @@ class ShopItem
     }
     public function __toString(): string
     {
-        return $this->price.' '.$this->id;
+        return $this->price.' '.$this->id.' '.$this->category;
     }
 
     public function getId(): ?int

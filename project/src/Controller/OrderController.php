@@ -34,23 +34,15 @@ class OrderController extends AbstractController
         $form = $this->createForm(OrderFormType::class, $shopOrder);
 
         $form->handleRequest($request);
-        if ($this->getUser()) {
-            $session = $this->requestStack->getSession();
-            $sessionId = $session->getId();
-            $shopOrder->setStatus(ShopOrder::STATUS_NEW_ORDER);
-            $shopOrder->setSessionId($sessionId);
-            $shopOrder->setUserEmail($this->getUser()->getUserIdentifier());
-            $shopOrder->setUserName($this->getUser()->getUserIdentifier());
-            $em->persist($shopOrder);
-            $em->flush();
-            $session->migrate();
-            return $this->redirectToRoute('shop_cart');
-        }
         if ($form->isSubmitted() && $form->isValid()) {
             $shopOrder = $form->getData();
 
             if ($shopOrder instanceof ShopOrder) {
                 $session = $this->requestStack->getSession();
+
+                if ($this->getUser()) {
+                    $shopOrder->setUserId($this->getUser()->getId());
+                }
                 $sessionId = $session->getId();
                 $shopOrder->setStatus(ShopOrder::STATUS_NEW_ORDER);
                 $shopOrder->setSessionId($sessionId);
