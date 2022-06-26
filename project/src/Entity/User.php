@@ -33,6 +33,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'string', length: 255)]
     private $name;
 
+//    public function __toString(): string
+//    {
+//        return  (string) $this->roles;
+//    }
+
     public function getId(): ?int
     {
         return $this->id;
