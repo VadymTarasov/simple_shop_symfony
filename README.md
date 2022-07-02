@@ -29,7 +29,7 @@ npm run dev
 **4**. Обновите базу данных в контейнере php используя команды:
 * команда для входа в контейнер
 ```shell script
-docker exec -it project_php bash
+docker exec -it symfony_php bash
 ```
 * команда для обновления базы
 ```shell script
@@ -39,7 +39,7 @@ php bin/console doctrine:schema:update --force
 **5**. Добавьте администратора в контейнере mysql
 * команда для входа в контейнер
 ```shell script
-docker exec -it project_mysql bash
+docker exec -it symfony_mysql bash
 ```
 * команда для входа в mysql
 ```shell script
