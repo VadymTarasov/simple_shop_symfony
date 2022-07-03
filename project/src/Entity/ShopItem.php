@@ -6,8 +6,12 @@ use App\Repository\ShopItemRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 #[ORM\Entity(repositoryClass: ShopItemRepository::class)]
+#[Vich\Uploadable]
 class ShopItem
 {
     #[ORM\Id]
@@ -32,6 +36,24 @@ class ShopItem
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $image;
+
+    /**
+     * @Vich\UploadableField(mapping="product_images", fileNameProperty="image")
+     * @var File
+     */
+    private $imageFile;
+
+    public function setImageFile(File $image = null)
+    {
+        $this->imageFile = $image;
+
+    }
+
+    public function getImageFile()
+    {
+        return $this->imageFile;
+    }
+
 
     public function __construct()
     {

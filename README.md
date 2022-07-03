@@ -25,8 +25,12 @@ npm install
 ```shell script
 npm run dev
 ```
+**4**. Импорт базы данных MySQL в Docker (после импорта бд проект готов к работе).
 
-**4**. Обновите базу данных в контейнере php используя команды:
+```shell script
+docker exec -i symfony_mysql mysql -uroot --password=123654789 simple_shop_symfony < /var/www/simple_shop_symfony/damp_db.sql
+```
+**5**. Вы также можете создать базу данных, используя приведенные ниже команды:
 * команда для входа в контейнер
 ```shell script
 docker exec -it symfony_php bash
@@ -36,14 +40,14 @@ docker exec -it symfony_php bash
 php bin/console doctrine:schema:update --force
 ```
 
-**5**. Добавьте администратора в контейнере mysql
+**6**. Добавить администратора
 * команда для входа в контейнер
 ```shell script
 docker exec -it symfony_mysql bash
 ```
 * команда для входа в mysql
 ```shell script
-mysql -u root -p
+mysql -u root --password=123654789
 ```
 * SQL-запрос
 ```shell script
@@ -54,7 +58,7 @@ INSERT INTO simple_shop_symfony.user (email, roles, password,name) \
 * логин - admin@mail.com
 * пароль - 123456789
 
-**6**. Теперь вы можете создать категории и продукты в админ панели или используйте SQL-запрос:
+**7**. Теперь вы можете создать категории и продукты в админ панели или используйте SQL-запрос:
 ```shell script
 INSERT INTO simple_shop_symfony.category (title) \
   VALUES ( 'fruit');
