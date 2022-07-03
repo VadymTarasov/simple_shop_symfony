@@ -36,9 +36,7 @@
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="/shop/cart">Корзина</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/shop/order/show">Лист заказов</a>
-                        </li>
+
                         {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                             <li class="nav-item">
                                 <a class="nav-link active" aria-current="page" href="{{ path('app_logout') }}">Выйти</a>
@@ -46,6 +44,15 @@
                             <li class="nav-item">
                                 <a class="nav-link active" aria-current="page" href="/profile">Личный кабинет</a>
                             </li>
+
+                            {% if 'ROLE_ADMIN' in app.user.roles %}
+                                <li class="nav-item">
+                                    <a class="nav-link active" aria-current="page" href="/admin">Админ</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/shop/order/show">Все заказы</a>
+                                </li>
+                            {% endif %}
 
                         {% else %}
                             <li class="nav-item">
@@ -55,9 +62,7 @@
                                 <a class="nav-link active" aria-current="page" href="{{ path('app_register') }}">Регистрация</a>
                             </li>
                         {% endif %}
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="/admin">Админ</a>
-                        </li>
+
                     </ul>
                     <form class="d-flex" role="search" method="get"  action="{{ path('app_search') }}">
                         <input class="form-control me-2" type="search" name="title" placeholder="Поиск" aria-label="Search">

@@ -108,7 +108,7 @@ CREATE TABLE `shop_item` (
   PRIMARY KEY (`id`),
   KEY `IDX_DEE9C36512469DE2` (`category_id`),
   CONSTRAINT `FK_DEE9C36512469DE2` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -117,7 +117,7 @@ CREATE TABLE `shop_item` (
 
 LOCK TABLES `shop_item` WRITE;
 /*!40000 ALTER TABLE `shop_item` DISABLE KEYS */;
-INSERT INTO `shop_item` VALUES (1,1,20,'apple','green ',NULL),(2,2,10,'corn','yellow',NULL),(3,1,20,'chery','<div>red</div>',NULL),(4,1,5,'banana','<div>desc banan</div>',NULL);
+INSERT INTO `shop_item` VALUES (1,1,20,'apple','green ','AC.svg'),(2,2,10,'corn','yellow','AD.svg'),(3,1,20,'chery','<div>red</div>',NULL),(4,1,5,'banana','<div>desc banan</div>',NULL),(5,2,25,'apple','<div>description</div>','2061e78971fe90b966fc3e35f26f3af4319437c5.png');
 /*!40000 ALTER TABLE `shop_item` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -177,7 +177,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'admin@mail.com','[\"ROLE_ADMIN\"]','$2y$13$6NpxNLWgSAlluDJ9tHFYBugLRHuU24v9fub7Darvzh7R.MYzBLErC','0500000000','admin');
+INSERT INTO `user` VALUES (1,'admin@mail.com','[\"ROLE_ADMIN\"]','$2y$13$/lMfi.3ohY/gtmsy6X9Hbe0vDYg8atHl9yBGfdlnv5ohhLI/RwcqW','0500000000','admin');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -190,4 +190,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-07-02 17:19:56
+-- Dump completed on 2022-07-03 12:17:06
