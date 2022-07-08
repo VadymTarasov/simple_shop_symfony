@@ -25,11 +25,14 @@ npm install
 ```shell script
 npm run dev
 ```
-**4**. Импорт базы данных MySQL в Docker (после импорта бд проект готов к работе).
+**4**. Импорт базы данных MySQL в Docker (после импорта бд проект готов к работе, также будет зарегистрирован пользователь с правами администратора).
+* логин - admin@mail.com
+* пароль - 123456789
 
 ```shell script
 docker exec -i symfony_mysql mysql -uroot --password=123654789 simple_shop_symfony < /var/www/simple_shop_symfony/damp_db.sql
 ```
+
 **5**. Вы также можете создать базу данных, используя приведенные ниже команды:
 * команда для входа в контейнер
 ```shell script
