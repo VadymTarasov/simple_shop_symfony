@@ -79,7 +79,7 @@ CREATE TABLE `shop_cart` (
   PRIMARY KEY (`id`),
   KEY `IDX_CA516ECC115C1274` (`shop_item_id`),
   CONSTRAINT `FK_CA516ECC115C1274` FOREIGN KEY (`shop_item_id`) REFERENCES `shop_item` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -117,7 +117,7 @@ CREATE TABLE `shop_item` (
 
 LOCK TABLES `shop_item` WRITE;
 /*!40000 ALTER TABLE `shop_item` DISABLE KEYS */;
-INSERT INTO `shop_item` VALUES (1,1,20,'apple','green ','AC.svg'),(2,2,10,'corn','yellow','AD.svg'),(3,1,20,'chery','<div>red</div>',NULL),(4,1,5,'banana','<div>desc banan</div>',NULL),(5,2,25,'apple','<div>description</div>','2061e78971fe90b966fc3e35f26f3af4319437c5.png');
+INSERT INTO `shop_item` VALUES (1,1,20,'apple','green ','AC.svg'),(2,2,10,'corn','yellow','AD.svg'),(3,1,20,'chery','<div>red</div>',NULL),(4,1,5,'banana','<div>desc banan</div>',NULL),(5,1,25,'apple','<div>description</div>','2061e78971fe90b966fc3e35f26f3af4319437c5.png');
 /*!40000 ALTER TABLE `shop_item` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -140,7 +140,7 @@ CREATE TABLE `shop_order` (
   `updated_at` datetime DEFAULT NULL COMMENT '(DC2Type:datetime_immutable)',
   `user_id` int DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -190,4 +190,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-07-03 12:17:06
+-- Dump completed on 2022-07-08 11:30:23
