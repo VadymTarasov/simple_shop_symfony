@@ -4,17 +4,26 @@
 
 {% block body %}
 
-    <div class="col-md-6">
+    <div class="col-md-3">
         <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
             <div class="col-auto d-none d-lg-block">
-                <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-
+                {% if  image %}
+                    <img width="100%" height="225" src="{{ asset('images/ShopItem/') }}{{ image }}" role="img">
+                {% else %}
+                    <svg class="bd-placeholder-img card-img-top" width="100%" height="225"
+                         xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail"
+                         preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title>
+                        <rect width="100%" height="100%" fill="#55595c"/>
+                        <text x="30%" y="50%" fill="#eceeef" dy=".3em">нет картинки</text>
+                    </svg>
+                {% endif %}
             </div>
             <div class="col p-4 d-flex flex-column position-static">
-                <h3 class="mb-0">{{ title|striptags }}</h3>
-                <div class="mb-1 text-muted">{{ price|striptags }}</div>
-                <p class="mb-auto">{{ description|striptags}}</p>
-                <a href="{{ path('shop_cart_add', {'id': id}) }}" class="btn btn-success mt-2" style="width: 200px;">Добавить в корзину</a>
+                <h3 class="mb-0">Название: {{ title|striptags }}</h3>
+                <p class="mb-auto">Цена: {{ price|striptags }} грн</p>
+                <p class="mb-auto">Описание: {{ description|striptags }}</p>
+                <a href="{{ path('shop_cart_add', {'id': id}) }}" class="btn btn-success mt-2" style="width: 200px;">Добавить
+                    в корзину</a>
             </div>
         </div>
     </div>

@@ -14,7 +14,8 @@ class ItemController extends AbstractController
 {
     private $requestStack;
 
-    public function __construct(RequestStack $requestStack) {
+    public function __construct(RequestStack $requestStack)
+    {
         $this->requestStack = $requestStack;
         $this->requestStack->getSession()->getFlashBag()->add('notice', 'Profile updated');
     }
@@ -38,6 +39,7 @@ class ItemController extends AbstractController
             'items' => $items,
         ]);
     }
+
     #[Route('/shop/list/vegetables', name: 'shop_list_vegetables')]
     public function shopVegetables(ShopItemRepository $shopItemRepository): Response
     {
@@ -51,6 +53,7 @@ class ItemController extends AbstractController
     public function shopItem(ShopItem $shopItem): Response
     {
         return $this->render('index/shopItem.html.twig', [
+            'image' => $shopItem->getImage(),
             'title' => $shopItem->getTitle(),
             'description' => $shopItem->getDescription(),
             'price' => $shopItem->getPrice(),

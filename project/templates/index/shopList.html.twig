@@ -3,39 +3,48 @@
 {% block title %}Список товаров{% endblock %}
 
 {% block body %}
-<div class="example-wrapper">
+    <div class="example-wrapper">
 
-    <h1>Список товаров ✅</h1>
-    <ul class="nav">
-        <li class="nav-item">  <a class="nav-link" href="/shop/list/fruit">Фрукты</a>  </li>
-        <li class="nav-item">  <a class="nav-link" href="/shop/list/vegetables">Овощи</a>  </li>
-         </ul>
-    <main>
+        <h1>Список товаров ✅</h1>
+        <ul class="nav">
+            <li class="nav-item"><a class="nav-link" href="/shop/list/fruit">Фрукты</a></li>
+            <li class="nav-item"><a class="nav-link" href="/shop/list/vegetables">Овощи</a></li>
+        </ul>
+        <main>
             <div class="container">
                 <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-                {% for item in items %}
+                    {% for item in items %}
 
-                    <div class="col">
-                        <a href="{{ path('shop_item', {'id': item.id}) }}" class="itemClass">
-                        <div class="card shadow-sm">
-                            <img width="100%" height="225" src="{{ asset('images/ShopItem/') }}{{item.image}}" role="img" >
-                            <div class="card-body">
-                                <p class="card-text">{{ item.title|striptags}}</p>
-                                <p class="card-text">{{ item.price|striptags}}</p>
-                                <p class="card-text">{{ item.description|striptags}}</p>
-                                <div class="d-flex justify-content-between align-items-center">
+                        <div class="col">
+                            <a href="{{ path('shop_item', {'id': item.id}) }}" class="itemClass">
+                                <div class="card shadow-sm">
+                                    {% if  item.image %}
+                                        <img width="100%" height="225"
+                                             src="{{ asset('images/ShopItem/') }}{{ item.image }}" role="img">
+                                    {% else %}
+                                        <svg class="bd-placeholder-img card-img-top" width="100%" height="225"
+                                             xmlns="http://www.w3.org/2000/svg" role="img"
+                                             aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice"
+                                             focusable="false"><title>Placeholder</title>
+                                            <rect width="100%" height="100%" fill="#55595c"/>
+                                            <text x="30%" y="50%" fill="#eceeef" dy=".3em">нет картинки</text>
+                                        </svg>
+                                    {% endif %}
+                                    <div class="card-body">
+                                        <p class="card-text">Название: {{ item.title|striptags }}</p>
+                                        <p class="card-text">Цена: {{ item.price|striptags }} грн</p>
+                                        <p class="card-text">Описание: {{ item.description|striptags }}</p>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
+                            </a>
                         </div>
-                        </a>
-                    </div>
-                {% endfor %}
-
-
+                    {% endfor %}
                 </div>
             </div>
-    </main>
-</div>
+        </main>
+    </div>
 
 
 {% endblock %}

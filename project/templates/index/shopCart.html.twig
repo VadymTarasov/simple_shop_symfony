@@ -11,17 +11,30 @@
                 {% for item in items %}
                     <div class="col">
                         <div class="card shadow-sm">
-                            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+                            {% if  item.shopItem.image %}
+                                <img width="100%" height="225"
+                                     src="{{ asset('images/ShopItem/') }}{{ item.shopItem.image }}" role="img">
+                            {% else %}
+                                <svg class="bd-placeholder-img card-img-top" width="100%" height="225"
+                                     xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail"
+                                     preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title>
+                                    <rect width="100%" height="100%" fill="#55595c"/>
+                                    <text x="30%" y="50%" fill="#eceeef" dy=".3em">нет картинки</text>
+                                </svg>
+                            {% endif %}
                             <div class="card-body">
-                                <p class="card-text">Название: {{ item.shopItem.title|striptags}}</p>
-                                <p class="card-text">Цена: {{ item.shopItem.price|striptags}} грн</p>
+                                <p class="card-text">Название: {{ item.shopItem.title|striptags }}</p>
+                                <p class="card-text">Цена: {{ item.shopItem.price|striptags }} грн</p>
                                 {% set sum = sum + item.shopItem.price %}
-                                <p class="card-text">Описание: {{ item.shopItem.description|striptags}}</p>
+                                <p class="card-text">Описание: {{ item.shopItem.description|striptags }}</p>
                                 <div class="d-flex justify-content-between align-items-center">
                                 </div>
                             </div>
                         </div>
-                        <a href="{{ path('shop_cart_delete', {'id': item.id}) }}" class="btn btn-secondary mt-2">Убрать из корзины</a>
+                        <a href="{{ path('shop_cart_delete', {'id': item.id}) }}" class="btn btn-secondary mt-2">Убрать
+                            из корзины</a>
+                        <a href="{{ path('shop_cart_add', {'id': item.shopItem.id}) }}" class="btn btn-info mt-2">Добавить
+                            в корзину</a>
                     </div>
                 {% endfor %}
             </div>

@@ -3,50 +3,60 @@
 {% block title %}Профиль{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+    <style>
+        .example-wrapper {
+            margin: 1em auto;
+            max-width: 800px;
+            width: 95%;
+            font: 18px/1.5 sans-serif;
+        }
 
-<div class="example-wrapper">
-    <h1>Профиль</h1>
+        .example-wrapper code {
+            background: #F5F5F5;
+            padding: 2px 6px;
+        }
+    </style>
 
-    <div class="row g-0">
-        <div class="col-md-3" style="margin-top: 15px">
-            <img style="width: 100%;" src="https://www.soundandvision.ee/wp-content/uploads/2019/05/profile-img.jpg" alt="...">
-        </div>
-        <div class="col-md-9">
-            <div class="card-body">
-                <ul class="list-group">
-                    <li class="list-group-item"> {{ user.id|striptags }}</li>
-                    <li class="list-group-item"> {{ user.name|striptags }}</li>
-                    <li class="list-group-item"> {{ user.email|striptags }}</li>
-                    <li class="list-group-item"> {{ user.userPhone|striptags}}</li>
-                </ul>
+    <div class="example-wrapper">
+        <h1>Профиль</h1>
+
+        <div class="row g-0">
+            <div class="col-md-3" style="margin-top: 15px">
+                <img style="width: 100%;" src="https://www.soundandvision.ee/wp-content/uploads/2019/05/profile-img.jpg"
+                     alt="...">
+            </div>
+            <div class="col-md-9">
+                <div class="card-body">
+                    <ul class="list-group">
+                        <li class="list-group-item"> {{ user.id|striptags }}</li>
+                        <li class="list-group-item"> {{ user.name|striptags }}</li>
+                        <li class="list-group-item"> {{ user.email|striptags }}</li>
+                        <li class="list-group-item"> {{ user.userPhone|striptags }}</li>
+                    </ul>
+                </div>
             </div>
         </div>
-    </div>
-    <h1> Заказы </h1>
-    {% for order in orders %}
+        <h1> Заказы </h1>
+        {% for order in orders %}
 
+            {% if order.userId == user.id %}
+                <td>_________________________________________________________________________________________ <br></td>
 
-        {% if order.userId == user.id %}
-            <td>заказ № <b>{{ order.id|striptags }}|</b> оформлен на <b>{{ order.userName|striptags }}|</b>
-                адрес <b>{{ order.address|striptags }}|</b> дата создания <b>{{ order.createdAt|date("m/d/Y")}}|</b></td>
-        {% endif %}
+                <td>заказ № <b>{{ order.id|striptags }}|</b> оформлен на <b>{{ order.userName|striptags }}|</b>
+                    адрес <b>{{ order.address|striptags }}|</b> дата создания <b>{{ order.createdAt|date("m/d/Y") }}
+                        |</b></td>
+            {% endif %}
 
             {% for carts in cart %}
                 {% if order.userId == user.id and order.userId ==  carts.userIdentifier
-                    and order.sessionId == carts.sessionId  %}
+                    and order.sessionId == carts.sessionId %}
 
                     <td><br>продукт - {{ carts.shopItem.title|striptags }} ✅ <br></td>
 
                 {% endif %}
+
             {% endfor %}
 
-        <td>_________________________________________________________________________________________ <br></td>
-
-    {% endfor %}
-
-</div>
+        {% endfor %}
+    </div>
 {% endblock %}
