@@ -39,7 +39,7 @@
                 {% endfor %}
             </div>
             <br>
-            <h4>Итого: {{ sum }} грн</h4>
+            <h4>Итого: {{ sum|price }}</h4>
             <br>
             <a href="{{ path('shop_order') }}" class="float-right btn btn-success mt-2">Оформить заказ</a>
             <a href="{{ path('shop_cart_drop') }}" class="btn btn-danger mt-2">Очистить корзину</a>

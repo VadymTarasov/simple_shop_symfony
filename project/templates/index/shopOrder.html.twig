@@ -5,8 +5,29 @@
 {% block body %}
     <div class="example-wrapper">
 
-        {{ form_start(form) }}
-        {{ form_widget(form) }}
-        {{ form_end(form) }}
+        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+            {{ form_start(form) }}
+            {{ form_label(form.user_name, 'Имя') }}
+            {{ form_widget(form.user_name, { 'attr': {'class': "span12",
+                'value': name } }) }}
+            {{ form_label(form.user_email, 'email') }}
+            {{ form_widget(form.user_email, { 'attr': {'class': "span12",
+                'value': mail } }) }}
+            {{ form_label(form.user_phone, 'Телефон') }}
+            {{ form_widget(form.user_phone, { 'attr': {'class': "span12",
+                'value': phone } }) }}
+            {{ form_label(form.address, 'Адрес') }}
+            {{ form_widget(form.address, { 'attr': {'class': "span12",
+                'placeholder': 'адрес доставки' } }) }}
+            {{ form_end(form) }}
+
+        {% else %}
+
+            {{ form_start(form) }}
+            {{ form_widget(form) }}
+            {{ form_end(form) }}
+
+        {% endif %}
+
     </div>
 {% endblock %}

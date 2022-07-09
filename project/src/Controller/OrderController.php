@@ -42,6 +42,7 @@ class OrderController extends AbstractController
 
                 if ($this->getUser()) {
                     $shopOrder->setUserId($this->getUser()->getId());
+
                 }
                 $sessionId = $session->getId();
                 $shopOrder->setStatus(ShopOrder::STATUS_NEW_ORDER);
@@ -54,11 +55,24 @@ class OrderController extends AbstractController
             return $this->redirectToRoute('shop_cart');
         }
 
+        if ($this->getUser()) {
+            $name = $this->getUser()->getName();
+            $mail = $this->getUser()->getUserIdentifier();
+            $phone = $this->getUser()->getUserPhone();
+        } else {
+            $name = null;
+            $mail = null;
+            $phone = null;
+        }
+
 
         return $this->render(
             'index/shopOrder.html.twig',
             [
                 'form' => $form->createView(),
+                'name' => $name,
+                'mail' => $mail,
+                'phone' => $phone,
             ]
         );
     }
