@@ -19,8 +19,8 @@
                 {% endif %}
             </div>
             <div class="col p-4 d-flex flex-column position-static">
-                <h3 class="mb-0">Название: {{ title|striptags }}</h3>
-                <p class="mb-auto">Цена: {{ price|striptags }} грн</p>
+                <p class="mb-auto">Название: {{ title|striptags }}</p>
+                <p class="mb-auto">Цена: {{ price|price|striptags }}</p>
                 <p class="mb-auto">Описание: {{ description|striptags }}</p>
                 <a href="{{ path('shop_cart_add', {'id': id}) }}" class="btn btn-success mt-2" style="width: 200px;">Добавить
                     в корзину</a>

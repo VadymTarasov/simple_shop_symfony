@@ -8,7 +8,7 @@
 git clone https://github.com/VadymTarasov/simple_shop_symfony.git dir_name
 ```
 
-**2**. Запустите докер контейнеры (имена контейнеров не должны повторятся)
+**2**. Запустите докер контейнеры 
 
 ```shell script
 docker compose build && docker compose up -d

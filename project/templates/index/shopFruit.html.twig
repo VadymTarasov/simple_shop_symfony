@@ -31,9 +31,9 @@
                                             </svg>
                                         {% endif %}
                                         <div class="card-body">
-                                            <p class="card-text">{{ item.title|striptags }}</p>
-                                            <p class="card-text">{{ item.price|striptags }}</p>
-                                            <p class="card-text">{{ item.description|striptags }}</p>
+                                            <p class="card-text">Название: {{ item.title|striptags }}</p>
+                                            <p class="card-text">Цена: {{ item.price|price|striptags }}</p>
+                                            <p class="card-text">Описание: {{ item.description|striptags }}</p>
                                             <div class="d-flex justify-content-between align-items-center">
                                             </div>
                                         </div>

@@ -24,7 +24,7 @@
                             {% endif %}
                             <div class="card-body">
                                 <p class="card-text">Название: {{ item.shopItem.title|striptags }}</p>
-                                <p class="card-text">Цена: {{ item.shopItem.price|striptags }} грн</p>
+                                <p class="card-text">Цена: {{ item.shopItem.price|price|striptags }}</p>
                                 {% set sum = sum + item.shopItem.price %}
                                 <p class="card-text">Описание: {{ item.shopItem.description|striptags }}</p>
                                 <div class="d-flex justify-content-between align-items-center">
