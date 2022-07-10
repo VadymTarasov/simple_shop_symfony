@@ -44,14 +44,14 @@ class DashboardController extends AbstractDashboardController
     public function configureDashboard(): Dashboard
     {
         return Dashboard::new()
-            ->setTitle('Admin');
+            ->setTitle($this->getUser()->getName());
     }
 
     public function configureMenuItems(): iterable
     {
 //        yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
-        // yield MenuItem::linkToCrud('The Label', 'fas fa-list', EntityClass::class);
-        yield MenuItem::linktoRoute('Shop', 'fas fa-shop', 'app_index');
+//        yield MenuItem::linktoRoute('Shop', 'fas fa-shop', 'app_index');
+        yield MenuItem::linkToUrl('Shop', 'fas fa-shop', '/');
 //        yield MenuItem::linktoRoute('Back to the website', 'fas fa-home', 'homepage');
         yield MenuItem::linkToCrud('ShopItem', 'fas fa-list', ShopItem::class);
         yield MenuItem::linkToCrud('Category', 'fas fa-tags', Category::class);
