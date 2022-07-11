@@ -60,7 +60,7 @@ CREATE TABLE `doctrine_migration_versions` (
 
 LOCK TABLES `doctrine_migration_versions` WRITE;
 /*!40000 ALTER TABLE `doctrine_migration_versions` DISABLE KEYS */;
-INSERT INTO `doctrine_migration_versions` VALUES ('DoctrineMigrations\\Version20220626094859','2022-06-26 09:49:06',15953),('DoctrineMigrations\\Version20220626104703','2022-06-26 10:47:14',4304),('DoctrineMigrations\\Version20220626113051','2022-06-26 11:30:57',3222);
+INSERT INTO `doctrine_migration_versions` VALUES ('DoctrineMigrations\\Version20220626094859','2022-06-26 09:49:06',15953),('DoctrineMigrations\\Version20220626104703','2022-06-26 10:47:14',4304),('DoctrineMigrations\\Version20220626113051','2022-06-26 11:30:57',3222),('DoctrineMigrations\\Version20220711130214','2022-07-11 13:02:42',3136);
 /*!40000 ALTER TABLE `doctrine_migration_versions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -76,10 +76,11 @@ CREATE TABLE `shop_cart` (
   `shop_item_id` int DEFAULT NULL,
   `session_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `user_identifier` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `amount` int DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `IDX_CA516ECC115C1274` (`shop_item_id`),
   CONSTRAINT `FK_CA516ECC115C1274` FOREIGN KEY (`shop_item_id`) REFERENCES `shop_item` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=54 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -140,7 +141,7 @@ CREATE TABLE `shop_order` (
   `updated_at` datetime DEFAULT NULL COMMENT '(DC2Type:datetime_immutable)',
   `user_id` int DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -168,7 +169,7 @@ CREATE TABLE `user` (
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `UNIQ_8D93D649E7927C74` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -177,7 +178,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'admin@mail.com','[\"ROLE_ADMIN\"]','$2y$13$/lMfi.3ohY/gtmsy6X9Hbe0vDYg8atHl9yBGfdlnv5ohhLI/RwcqW','0500000000','admin');
+INSERT INTO `user` VALUES (1,'admin@mail.com','[\"ROLE_ADMIN\"]','$2y$13$/lMfi.3ohY/gtmsy6X9Hbe0vDYg8atHl9yBGfdlnv5ohhLI/RwcqW','0500000000','admin'),(3,'user@mail.com','[\"ROLE_USER\"]','$2y$13$6BF8MK8T7ZkQCgD8Fi7gmuZ1Wf.uFuvfsIYKgy73tjtCen65VAJJq','+380950000000','user'),(4,'a@mail.com','[\"ROLE_USER\"]','$2y$13$5Dz0dNuKcQF1BeZHcHoS6uQKyUEz2uY12q/nOpLHlK2SdekT/2sMi','0500000000','user');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -190,4 +191,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-07-08 11:30:23
+-- Dump completed on 2022-07-11 14:02:52

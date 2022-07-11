@@ -43,6 +43,7 @@ class CartController extends AbstractController
         $sessionId = $session->getId();
         $shopCart = new ShopCart();
         $shopCart->setShopItem($shopItems);
+        $shopCart->setAmount(1);
         $shopCart->setSessionId($sessionId);
         if ($this->getUser()) {
             $shopCart->setUserIdentifier($this->getUser()->getId());
@@ -82,6 +83,38 @@ class CartController extends AbstractController
             );
         }
         $entityManager->remove($product);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('shop_cart');
+    }
+
+    #[Route('/shop/item/count/add/{id}', name: 'shop_cart_amount_add', methods: ['GET'], requirements: ['id' => '\d+'])]
+    public function shopCartAmountAdd(Request $request, ManagerRegistry $doctrine, int $id): Response
+    {
+        $entityManager = $doctrine->getManager();
+        $product = $entityManager->getRepository(ShopCart::class)->find($id);
+        $count = $product->getAmount();
+        $product->setAmount($count + 1);
+        $entityManager = $doctrine->getManager();
+        $entityManager->persist($product);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('shop_cart');
+    }
+
+    #[Route('/shop/item/count/subtract/{id}', name: 'shop_cart_amount_subtract', methods: ['GET'], requirements: ['id' => '\d+'])]
+    public function shopCartAmount(Request $request, ManagerRegistry $doctrine, int $id): Response
+    {
+        $entityManager = $doctrine->getManager();
+        $product = $entityManager->getRepository(ShopCart::class)->find($id);
+        $count = $product->getAmount();
+        if ($count == 1){
+            $product->setAmount($count);
+        } else {
+            $product->setAmount($count - 1);
+        }
+        $entityManager = $doctrine->getManager();
+        $entityManager->persist($product);
         $entityManager->flush();
 
         return $this->redirectToRoute('shop_cart');

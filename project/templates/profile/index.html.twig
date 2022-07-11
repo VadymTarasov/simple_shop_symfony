@@ -51,7 +51,7 @@
                 {% if order.userId == user.id and order.userId ==  carts.userIdentifier
                     and order.sessionId == carts.sessionId %}
 
-                    <td><br>продукт - {{ carts.shopItem.title|striptags }} ✅ <br></td>
+                    <td><br>продукт - {{ carts.shopItem.title|striptags }}, количество - {{ carts.amount|striptags }} ✅ <br></td>
 
                 {% endif %}
 

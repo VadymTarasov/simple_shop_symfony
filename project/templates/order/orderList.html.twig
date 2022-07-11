@@ -14,7 +14,7 @@
                 {% for carts in cart %}
                     {% if order.sessionId == carts.sessionId %}
 
-                        <td><br>продукт - {{ carts.shopItem.title }} <br></td>
+                        <td><br>продукт - {{ carts.shopItem.title }}, количество - {{ carts.amount|striptags }} шт. <br></td>
 
                     {% endif %}
                 {% endfor %}

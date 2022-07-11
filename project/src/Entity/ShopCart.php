@@ -22,6 +22,9 @@ class ShopCart
     #[ORM\Column(type: 'string', nullable: true)]
     private $userIdentifier;
 
+    #[ORM\Column(type: 'integer', nullable: true)]
+    private $amount;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -59,6 +62,18 @@ class ShopCart
     public function setUserIdentifier(string $userIdentifier): self
     {
         $this->userIdentifier = $userIdentifier;
+
+        return $this;
+    }
+
+    public function getAmount(): ?int
+    {
+        return $this->amount;
+    }
+
+    public function setAmount(?int $amount): self
+    {
+        $this->amount = $amount;
 
         return $this;
     }

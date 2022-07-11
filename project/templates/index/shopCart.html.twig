@@ -25,7 +25,8 @@
                             <div class="card-body">
                                 <p class="card-text">Название: {{ item.shopItem.title|striptags }}</p>
                                 <p class="card-text">Цена: {{ item.shopItem.price|price|striptags }}</p>
-                                {% set sum = sum + item.shopItem.price %}
+                                <p class="card-text">Количество: {{ item.amount|striptags }}</p>
+                                {% set sum = sum + item.shopItem.price * item.amount  %}
                                 <p class="card-text">Описание: {{ item.shopItem.description|striptags }}</p>
                                 <div class="d-flex justify-content-between align-items-center">
                                 </div>
@@ -33,8 +34,9 @@
                         </div>
                         <a href="{{ path('shop_cart_delete', {'id': item.id}) }}" class="btn btn-secondary mt-2">Убрать
                             из корзины</a>
-                        <a href="{{ path('shop_cart_add', {'id': item.shopItem.id}) }}" class="btn btn-info mt-2">Добавить
-                            в корзину</a>
+                        <a href="{{ path('shop_cart_amount_add', {'id': item.id}) }}" class="btn btn-info mt-2">+1</a>
+                        <a href="{{ path('shop_cart_amount_subtract', {'id': item.id}) }}" class="btn btn-warning mt-2">-1</a>
+                        <br>
                     </div>
                 {% endfor %}
             </div>
@@ -43,7 +45,7 @@
             <br>
             <a href="{{ path('shop_order') }}" class="float-right btn btn-success mt-2">Оформить заказ</a>
             <a href="{{ path('shop_cart_drop') }}" class="btn btn-danger mt-2">Очистить корзину</a>
-            <br>
+
 
         </div>
 
