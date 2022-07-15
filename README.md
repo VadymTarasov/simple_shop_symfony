@@ -14,7 +14,7 @@ git clone https://github.com/VadymTarasov/simple_shop_symfony.git dir_name
 docker compose build && docker compose up -d
 ```
 
-**3**. В терминале откройте папку с проектом и  введите следующие команды:
+**3**. В контейнер symfony_php введите следующие команды:
 
 ```shell script
 composer update
