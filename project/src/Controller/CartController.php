@@ -44,6 +44,7 @@ class CartController extends AbstractController
         $shopCart = new ShopCart();
         $shopCart->setShopItem($shopItems);
         $shopCart->setAmount(1);
+        $shopCart->setTotalPrice($shopCart->getShopItem()->getPrice());
         $shopCart->setSessionId($sessionId);
         if ($this->getUser()) {
             $shopCart->setUserIdentifier($this->getUser()->getId());
@@ -92,11 +93,12 @@ class CartController extends AbstractController
     public function shopCartAmountAdd(Request $request, ManagerRegistry $doctrine, int $id): Response
     {
         $entityManager = $doctrine->getManager();
-        $product = $entityManager->getRepository(ShopCart::class)->find($id);
-        $count = $product->getAmount();
-        $product->setAmount($count + 1);
+        $shopCart = $entityManager->getRepository(ShopCart::class)->find($id);
+        $count = $shopCart->getAmount();
+        $shopCart->setAmount($count + 1);
+        $shopCart->setTotalPrice($shopCart->getShopItem()->getPrice() * $shopCart->getAmount());
         $entityManager = $doctrine->getManager();
-        $entityManager->persist($product);
+        $entityManager->persist($shopCart);
         $entityManager->flush();
 
         return $this->redirectToRoute('shop_cart');
@@ -106,15 +108,16 @@ class CartController extends AbstractController
     public function shopCartAmount(Request $request, ManagerRegistry $doctrine, int $id): Response
     {
         $entityManager = $doctrine->getManager();
-        $product = $entityManager->getRepository(ShopCart::class)->find($id);
-        $count = $product->getAmount();
+        $shopCart = $entityManager->getRepository(ShopCart::class)->find($id);
+        $count = $shopCart->getAmount();
         if ($count == 1){
-            $product->setAmount($count);
+            $shopCart->setAmount($count);
         } else {
-            $product->setAmount($count - 1);
+            $shopCart->setAmount($count - 1);
         }
+        $shopCart->setTotalPrice($shopCart->getShopItem()->getPrice() * $shopCart->getAmount());
         $entityManager = $doctrine->getManager();
-        $entityManager->persist($product);
+        $entityManager->persist($shopCart);
         $entityManager->flush();
 
         return $this->redirectToRoute('shop_cart');

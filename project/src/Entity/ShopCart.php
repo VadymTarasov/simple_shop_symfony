@@ -25,6 +25,9 @@ class ShopCart
     #[ORM\Column(type: 'integer', nullable: true)]
     private $amount;
 
+    #[ORM\Column]
+    private ?int $totalPrice = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -74,6 +77,18 @@ class ShopCart
     public function setAmount(?int $amount): self
     {
         $this->amount = $amount;
+
+        return $this;
+    }
+
+    public function getTotalPrice(): ?int
+    {
+        return $this->totalPrice;
+    }
+
+    public function setTotalPrice(int $totalPrice): self
+    {
+        $this->totalPrice = $totalPrice;
 
         return $this;
     }
