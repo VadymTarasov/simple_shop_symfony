@@ -25,7 +25,7 @@ npm install
 ```shell script
 npm run dev
 ```
-**4**Расширение прав доступа на редактирование и добавление файлов
+**4**. Расширение прав доступа на редактирование и добавление файлов
 ```shell script
 sudo chmod 777 -R simple_shop_symfony/
 ```
